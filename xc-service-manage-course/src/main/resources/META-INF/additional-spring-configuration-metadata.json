@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "eureka.client",
+      "type": "java.lang.String",
+      "description": "Description for eureka.client."
+    },
+    {
+      "name": "course‐publish.templateId",
+      "type": "java.lang.String",
+      "description": "Description for course‐publish.templateId."
+    }
+  ] }
