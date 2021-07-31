@@ -18,9 +18,23 @@ public class ExceptionCatch {
     private static ImmutableMap<Class<? extends Throwable>,ResultCode> EXCEPTIONS;
     protected static ImmutableMap.Builder<Class<? extends Throwable>,ResultCode> builder = ImmutableMap.builder();
 
+    //驳货CustomException此类异常
+    @ExceptionHandler(CustomException.class)
+    @ResponseBody
+    public ResponseResult exception(CustomException customException){
+        customException.printStackTrace();
+        //记录日志
+        LOGGER.error("catch exception:{}",customException.getMessage());
+        ResultCode resultCode = customException.getResultCode();
+        return new ResponseResult(resultCode);
+    }
+
+    //补货Exception此类异常
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseResult exception(Exception exception){
+        exception.printStackTrace();
+        //记录日志
         LOGGER.error("catch exception:{}",exception.getMessage());
         if(EXCEPTIONS == null){
             EXCEPTIONS = builder.build();

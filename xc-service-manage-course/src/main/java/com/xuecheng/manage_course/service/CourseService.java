@@ -149,10 +149,11 @@ public class CourseService {
         return teachplanList.get(0).getId();
     }
 
-    public QueryResponseResult<CourseInfo> findCourseList(int page, int size, CourseListRequest courseListRequest) {
+    public QueryResponseResult<CourseInfo> findCourseList(String company_id, int page, int size, CourseListRequest courseListRequest) {
         if(courseListRequest == null){
             courseListRequest = new CourseListRequest();
         }
+        courseListRequest.setCompanyId(company_id);
         if(page <= 0){
             page = 0;
         }
@@ -160,12 +161,10 @@ public class CourseService {
             size=5;
         }
         PageHelper.startPage(page,size);
-        Page<CourseInfo> courseList = courseMapper.findCourseList(courseListRequest);
+        Page<CourseInfo> courseListPage = courseMapper.findCourseListPage(courseListRequest);
         QueryResult<CourseInfo> courseInfoQueryResult = new QueryResult<>();
-        List<CourseInfo> result = courseList.getResult();
-        System.out.println(result);
-        courseInfoQueryResult.setList(courseList.getResult());
-        courseInfoQueryResult.setTotal(courseList.getTotal());
+        courseInfoQueryResult.setList(courseListPage.getResult());
+        courseInfoQueryResult.setTotal(courseListPage.getTotal());
         return new QueryResponseResult<CourseInfo>(CommonCode.SUCCESS,courseInfoQueryResult);
     }
 

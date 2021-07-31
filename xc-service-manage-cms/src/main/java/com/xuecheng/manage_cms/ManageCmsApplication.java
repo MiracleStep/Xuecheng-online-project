@@ -1,5 +1,6 @@
 package com.xuecheng.manage_cms;
 
+import com.xuecheng.framework.interceptor.FeignClientInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -30,5 +31,9 @@ public class ManageCmsApplication {
         return new RestTemplate(new OkHttp3ClientHttpRequestFactory());
     }
 
+    @Bean
+    public FeignClientInterceptor getFeignClientInterceptor(){
+        return new FeignClientInterceptor();
+    }
 }
 
