@@ -8,8 +8,10 @@ import lombok.ToString;
  */
 @ToString
 public enum LearningCode implements ResultCode {
-    CMS_ADDPAGE_EXISTSNAME(false,23001,"获取学习地址失败");
-
+    CMS_ADDPAGE_EXISTSNAME(false,23001,"获取学习地址失败"),
+    CHOOSECOURSE_TASKISNULL(false,23002,"选课信息有误·"),
+    CHOOSECOURSE_USERISNULL(false,23003,"课程学习用户为空"),
+    LEARNING_GETMEDIA_ERROR(false,23004,"获取课程信息错误");
     //操作代码
     boolean success;
     //操作代码
